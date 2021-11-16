@@ -1,0 +1,113 @@
+<div class="mt-3 px-2">
+  <h1>{{storeInfo.Name}}</h1>
+  <h3 *ngIf="offer == 'NoDiscount' else offertemp"></h3>
+
+  <h4>IDNational</h4>
+  <input type="number" [(ngModel)]="IDNationalInput" />
+  <h3>{{IDNationalInput | IDNational}}</h3>
+  <hr>
+  <h4>CreditCard</h4>
+  <input type="number" [(ngModel)]="creditCardInput" />
+  <!-- <h3>{{creditCardInput | creditCard}}</h3> -->
+
+  <ng-template #offertemp>
+    <div class="mt-5">
+      <!-- <div class="mt-5" [hidden]="IsPurshased"> -->
+      <h3>We offer an explicit discount of: {{offer}}</h3>
+    </div>
+  </ng-template>
+
+  <div class="row">
+    <div class="col-4">
+      <img [src]=storeInfo.Logo width="200" height="150" />
+    </div>
+    <div class="col-4">
+      <!-- <select class="form-select dropdown bg-secondary" [(ngModel)]="selectedCat" (change)="changeCat(selectedCat)">
+        <option selected>CategoryName</option>
+        <option *ngFor="let catg of CategoryList" [value]="catg.ID">{{catg.name}}</option>
+      </select> -->
+      <!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          CategoryName
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [(ngModel)]="selectedCat" (change)="changeCat(selectedCat)">
+          <li *ngFor="let catg of CategoryList" [value]="catg.ID"><a class="dropdown-item" href="#">{{catg.name}}</a></li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+  <div class="col-4 mt-3">
+    <select class="form-select dropdown bg-secondary" [(ngModel)]="selectedCat" (change)="changeCat(selectedCat)">
+      <option selected>CategoryName</option>
+      <option *ngFor="let catg of CategoryList" [value]="catg.ID">{{catg.name}}</option>
+    </select>
+  </div>
+
+  <div class="row mt-5">
+    <div *ngIf="IsPurshased == true else thanksmessage">
+      <div *ngFor="let item of Products; let i = index" style="display: inline-block;" class="m-1">
+        <!-- <ng-container> -->
+        <div id="card" *ngIf="item.Quantity != 0" appProductCard="orange" class="card mt-2"
+          [ngStyle]="{'background-color':(item.Quantity == 1)? 'yellow': 'orange'}">
+          <div>
+            <!-- <ng-template #empty></ng-template> -->
+            <!-- <ng-template #product> -->
+            <img [ngStyle]="{'border-radius': '25px 25px 0px 0px'}" [src]="item?.Img" class="card-img-top" height="200">
+            <div class="card-body">
+              <h5 class="card-title">Name: {{item?.Name}}</h5>
+              <p class="card-text">Price: {{ item?.Price | currency : 'USD' : 'symbol'}}</p>
+              <p class="card-text">Quantity: {{item?.Quantity}}</p>
+              <p class="card-text">TodayDate: {{todayDate | date}}</p>
+              <a class="btn btn-secondary w-100" (click)="decreaseQuintity(item.ID)">Buy</a>
+            </div>
+          </div>
+        </div>
+        <!-- </ng-template> -->
+        <!-- </ng-container> -->
+
+        <!-- <table class="table bg-dark text-white mt-3 w-75">
+          <thead>
+            <tr>
+              <th scope="col-2">#</th>
+              <th scope="col-2">Name</th>
+              <th scope="col-2">Price</th>
+              <th scope="col-2">Quantity</th>
+              <th scope="col-2">Image</th>
+              <th scope="col-2">Buy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of Products; let i = index" [ngStyle]="{'background-color':(item.Quantity == 1)? 'yellow': ''}">
+              <div *ngIf="item.Quantity == 0 then empty else product"></div>
+              <ng-template #empty></ng-template>
+              <ng-template #product>
+                <th>{{i+1}}</th>
+                <td>{{item?.Name}}</td>
+                <td>{{item?.Price}}</td>
+                <td>{{item?.Quantity}}</td>
+                <td><img [src]="item?.Img" width="120" height="100" appProductCard></td>
+                <td><button class="btn btn-primary w-75" (click)="decreaseQuintity(item.ID)">Buy</button></td>
+              </ng-template>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+    </div>
+
+
+    <ng-template #thanksmessage>
+      <div class="mt-5">
+        <!-- <div class="mt-5" [hidden]="IsPurshased"> -->
+        <p>Thanks for purchasing from our Store {{ClientName}}</p>
+      </div>
+    </ng-template>
+
+    <div class="my-2">
+      <label class="form-label text-warning">ClientName</label>
+      <input type="text" class="form-control" [(ngModel)]="ClientName">
+    </div>
+    <div class="my-2">
+      <button class="btn btn-primary" (click)="showtableProd()">Buy</button>
+    </div>
+  </div>
