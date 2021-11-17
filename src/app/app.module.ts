@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductCardDirective } from './Directives/ProductCard.directive';
 import { IDNationalPipe } from './Pipes/IDNational.pipe';
 import { CreditCardPipe } from './Pipes/CreditCard/creditCard.pipe';
+import { CartParentComponent } from './Components/Cart/CartParent/CartParent.component';
+import { CartChildComponent } from './Components/Cart/CartChild/CartChild.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { CreditCardPipe } from './Pipes/CreditCard/creditCard.pipe';
     AsideComponent,
     FooterComponent,
     ProducttComponent,
+    CartParentComponent,
+    CartChildComponent,
     ProductCardDirective,
     IDNationalPipe,
     CreditCardPipe

@@ -25,7 +25,7 @@ export class ProducttComponent implements OnInit {
   defaultOption = null;
 
   constructor() {
-    this.storeInfo = new Store('MyStore', 'https://fakeimg.pl/300/', [
+    this.storeInfo = new Store('MyStore', 'assets/logo.jpg', [
       'Delivery, selling',
     ]);
 

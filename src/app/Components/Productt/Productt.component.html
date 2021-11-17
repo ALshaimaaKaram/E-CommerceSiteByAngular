@@ -1,22 +1,5 @@
 <div class="mt-3 px-2">
   <h1>{{storeInfo.Name}}</h1>
-  <h3 *ngIf="offer == 'NoDiscount' else offertemp"></h3>
-
-  <h4>IDNational</h4>
-  <input type="number" [(ngModel)]="IDNationalInput" />
-  <h3>{{IDNationalInput | IDNational}}</h3>
-  <hr>
-  <h4>CreditCard</h4>
-  <input type="number" [(ngModel)]="creditCardInput" />
-  <!-- <h3>{{creditCardInput | creditCard}}</h3> -->
-
-  <ng-template #offertemp>
-    <div class="mt-5">
-      <!-- <div class="mt-5" [hidden]="IsPurshased"> -->
-      <h3>We offer an explicit discount of: {{offer}}</h3>
-    </div>
-  </ng-template>
-
   <div class="row">
     <div class="col-4">
       <img [src]=storeInfo.Logo width="200" height="150" />
@@ -37,6 +20,24 @@
       </div> -->
     </div>
   </div>
+
+  <h3 *ngIf="offer == 'NoDiscount' else offertemp"></h3>
+
+  <h4>IDNational</h4>
+  <input type="number" [(ngModel)]="IDNationalInput" />
+  <h3>{{IDNationalInput | IDNational}}</h3>
+  <hr>
+  <h4>CreditCard</h4>
+  <input type="number" [(ngModel)]="creditCardInput" />
+  <!-- <h3>{{creditCardInput | creditCard}}</h3> -->
+
+  <ng-template #offertemp>
+    <div class="mt-5">
+      <!-- <div class="mt-5" [hidden]="IsPurshased"> -->
+      <h3>We offer an explicit discount of: {{offer}}</h3>
+    </div>
+  </ng-template>
+
   <div class="col-4 mt-3">
     <select class="form-select dropdown bg-secondary" [(ngModel)]="selectedCat" (change)="changeCat(selectedCat)">
       <option selected>CategoryName</option>
@@ -56,9 +57,10 @@
             <img [ngStyle]="{'border-radius': '25px 25px 0px 0px'}" [src]="item?.Img" class="card-img-top" height="200">
             <div class="card-body">
               <h5 class="card-title">Name: {{item?.Name}}</h5>
-              <p class="card-text">Price: {{ item?.Price | currency : 'USD' : 'symbol'}}</p>
-              <p class="card-text">Quantity: {{item?.Quantity}}</p>
-              <p class="card-text">TodayDate: {{todayDate | date}}</p>
+              <p>Price: {{ item?.Price | currency : 'USD' : 'symbol'}}</p>
+              <p>Quantity: {{item?.Quantity}}</p>
+              <p>CategoryId: {{item?.CateogryID}}</p>
+              <p>TodayDate: {{todayDate | date}}</p>
               <a class="btn btn-secondary w-100" (click)="decreaseQuintity(item.ID)">Buy</a>
             </div>
           </div>

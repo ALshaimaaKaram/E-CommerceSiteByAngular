@@ -1,0 +1,7 @@
+<div class="col-4 mt-3">
+  <select class="form-select dropdown bg-secondary" [(ngModel)]="SelectedCategory">
+    <option *ngFor="let catg of CategoryList" [value]="catg.ID">{{catg.name}}</option>
+  </select>
+</div>
+
+<app-CartChild [categoryId] = "SelectedCategory"></app-CartChild>

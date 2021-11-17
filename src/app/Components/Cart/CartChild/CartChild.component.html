@@ -1,0 +1,28 @@
+<table class="table table-hover table-dark text-white mt-3 w-75">
+  <thead>
+    <tr>
+      <th scope="col-2">#</th>
+      <th scope="col-2">Name</th>
+      <th scope="col-2">Price</th>
+      <th scope="col-2">Quantity</th>
+      <th scope="col-2">Image</th>
+      <th scope="col-2">Buy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of productsSelectedByCat; let i = index"
+      [ngStyle]="{'background-color':(item.Quantity == 1)? 'yellow': ''}">
+      <div *ngIf="item.Quantity == 0 then empty else product"></div>
+      <ng-template #empty></ng-template>
+      <ng-template #product>
+        <th>{{i+1}}</th>
+        <td>{{item?.Name}}</td>
+        <td>{{item?.Price}}</td>
+        <td>{{item?.Quantity}}</td>
+        <td><img [src]="item?.Img" width="120" height="100" appProductCard></td>
+        <td><button class="btn btn-primary w-75">Buy</button></td>
+        <!-- (click)="decreaseQuintity(item.ID)" -->
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
