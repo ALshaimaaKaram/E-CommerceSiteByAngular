@@ -13,6 +13,10 @@ import { IDNationalPipe } from './Pipes/IDNational.pipe';
 import { CreditCardPipe } from './Pipes/CreditCard/creditCard.pipe';
 import { CartParentComponent } from './Components/Cart/CartParent/CartParent.component';
 import { CartChildComponent } from './Components/Cart/CartChild/CartChild.component';
+import { HomeComponent } from './Components/home/home.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { ContactUsComponent } from './Components/contact-us/contact-us.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { CartChildComponent } from './Components/Cart/CartChild/CartChild.compon
     CartChildComponent,
     ProductCardDirective,
     IDNationalPipe,
-    CreditCardPipe
+    CreditCardPipe,
+    HomeComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    NotFoundComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

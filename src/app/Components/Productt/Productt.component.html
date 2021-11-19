@@ -8,8 +8,8 @@
       <!-- <select class="form-select dropdown bg-secondary" [(ngModel)]="selectedCat" (change)="changeCat(selectedCat)">
         <option selected>CategoryName</option>
         <option *ngFor="let catg of CategoryList" [value]="catg.ID">{{catg.name}}</option>
-      </select> -->
-      <!-- <div class="dropdown">
+      </select>  -->
+      <!-- <div class="dropdown"> -->
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
           CategoryName
@@ -17,7 +17,7 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [(ngModel)]="selectedCat" (change)="changeCat(selectedCat)">
           <li *ngFor="let catg of CategoryList" [value]="catg.ID"><a class="dropdown-item" href="#">{{catg.name}}</a></li>
         </ul>
-      </div> -->
+      </div>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
   <hr>
   <h4>CreditCard</h4>
   <input type="number" [(ngModel)]="creditCardInput" />
-  <!-- <h3>{{creditCardInput | creditCard}}</h3> -->
+  <h3>{{creditCardInput | creditCard}}</h3>
 
   <ng-template #offertemp>
     <div class="mt-5">

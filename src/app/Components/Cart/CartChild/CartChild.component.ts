@@ -1,79 +1,61 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IProduct } from 'src/app/models/iproduct';
+import { ProductListService } from 'src/app/Services/product-list.service';
+import { IShoppingCartItems } from 'src/app/ViewModels/ishopping-cart-items';
 
 @Component({
   selector: 'app-CartChild',
   templateUrl: './CartChild.component.html',
   styleUrls: ['./CartChild.component.scss'],
 })
-export class CartChildComponent implements OnInit, OnChanges {
+
+export class CartChildComponent implements OnInit, OnChanges{
   productList: IProduct[] = [];
   productsSelectedByCat: IProduct[] = [];
+  //value from Child Component(pass Data from Parent to Child)
   @Input() categoryId:number = 0;
-  constructor() {
-    this.productList = [
-      {
-        ID: 1,
-        Name: 'Samsong',
-        Price: 5000,
-        Quantity: 4,
-        Img: 'assets/Products/mobile1.jpeg',
-        CateogryID: 1,
-      },
-      {
-        ID: 2,
-        Name: 'Samsong',
-        Price: 6000,
-        Quantity: 3,
-        Img: 'assets/Products/labtopS.jpg',
-        CateogryID: 2,
-      },
-      {
-        ID: 3,
-        Name: 'Lenovo',
-        Price: 7000,
-        Quantity: 1,
-        Img: 'assets/Products/labtopL.jpg',
-        CateogryID: 2,
-      },
-      {
-        ID: 4,
-        Name: 'LG',
-        Price: 7000,
-        Quantity: 5,
-        Img: 'assets/Products/TVLG.webp',
-        CateogryID: 4,
-      },
-      {
-        ID: 5,
-        Name: 'IPad',
-        Price: 7000,
-        Quantity: 6,
-        Img: 'assets/Products/IPad.jpg',
-        CateogryID: 3,
-      },
-    ];
+  //event for Pass Data from Child to Parent
+  // @Output() quantitySelected: EventEmitter<number>;
+  @Output() shoppingCartItems: EventEmitter<IShoppingCartItems>;
+  shoppingCartItem:IShoppingCartItems|undefined;
+  productShop: IProduct|undefined;
+  // productCount:any;
+  // productQuantityBase:number = 0;
 
-    this.productsSelectedByCat = Array.from(this.productList);
+
+  // productService:ProductListService;
+  constructor(private productService:ProductListService) {
+    // this.productService = productService;
+    // this.quantitySelected = new EventEmitter<number>();
+    this.shoppingCartItems = new EventEmitter<IShoppingCartItems>();
+    // this.shoppingCartItem = this.productList.find()
+    // this.shoppingCartItem.ProductID = ;
   }
+
   ngOnChanges(): void {
-    if (this.categoryId == 0)
-        this.productsSelectedByCat;
-    else
-    this.productsSelectedByCat = this.productList.filter((p) => p.CateogryID == this.categoryId);
+    this.productsSelectedByCat = this.productService.getProductByCategoryId(this.categoryId);
   }
 
-  ngOnInit() {}
-  getAllProduct(): IProduct[] {
-    return this.productList;
+  ngOnInit() {
+    this.productList = this.productService.getAllProduct();
   }
 
-  getProductById(ProductId: number): IProduct | undefined {
-    return this.productList.find((p) => p.ID == ProductId);
-  }
+  increaseQuantity(productID:number, inputQuantity:string)
+  {
+    this.productService.increaseQuantity(productID, inputQuantity);
+    // this.quantitySelected.emit(+inputQuantity);
 
-  getProductByCategoryId(CategoryId: number) {
-    // if (this.categoryId == 0) return this.productsSelectedByCat;
-    // else return productsSelectedByCat = this.productList.filter((p) => p.CateogryID == this.categoryId);
+    // this.productShop = this.productService.getProductById(productID);
+    // this.shoppingCartItem.ProductID = this.productShop?.ID;
+    // this.shoppingCartItem?.ProductName = this.productShop?.Name;
+    // this.shoppingCartItem?.SelectedQuantity = this.productShop?.Quantity;
+    // this.shoppingCartItem?.Unit_price = this.productShop?.Price;
+
+    // this.shoppingCartItems.emit(this.shoppingCartItem);
+  }
+  decreaseQuantity(productID:number, inputQuantity:string)
+  {
+    this.productService.decreaseQuantity(productID, inputQuantity);
+    // this.quantitySelected.emit(+inputQuantity);
   }
 }
