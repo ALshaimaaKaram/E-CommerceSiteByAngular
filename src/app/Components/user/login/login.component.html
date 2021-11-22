@@ -1,1 +1,4 @@
-<p>login works!</p>
+<div class="mt-5">
+  <button [disabled]="isUserLogged" class="btn btn-outline-primary me-2" (click)="login()">Login</button>
+  <button [disabled]="!isUserLogged" class="btn btn-outline-primary" (click)="logout()">Logout</button>
+</div>
