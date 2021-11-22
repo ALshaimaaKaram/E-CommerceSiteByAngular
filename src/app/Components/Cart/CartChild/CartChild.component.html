@@ -6,6 +6,8 @@
       <th scope="col-2">Price</th>
       <th scope="col-2">Quantity</th>
       <th scope="col-2">Image</th>
+      <th scope="col-2">Details</th>
+      <th scope="col-2">Detailsbtn</th>
       <th scope="col-2">QuantityInput</th>
       <th scope="col-2">Add To Cart</th>
     </tr>
@@ -21,6 +23,12 @@
         <td>{{item?.Price | currency : 'USD' : 'symbol'}}</td>
         <td>{{item?.Quantity}}</td>
         <td><img [src]="item?.Img" width="120" height="100" appProductCard = "yellow"></td>
+        <td>
+          <a class="btn btn-info text-white mt-4" [routerLink]="['/Product',item.ID]">Details</a>
+        </td>
+        <td>
+          <button class="btn btn-info text-white mt-4" (click)="openProdect(item.ID)">Details</button>
+        </td>
         <td>
           <button class="btn btn-success m-1 mt-0" (click)="increaseQuantity(item.ID, inputQuantity.value)">+</button>
           <input min="0" max="" type="number" class="form-control d-inline-block mt-4 w-50" #inputQuantity>

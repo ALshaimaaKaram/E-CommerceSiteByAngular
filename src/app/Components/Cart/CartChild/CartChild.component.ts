@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/models/iproduct';
 import { ProductListService } from 'src/app/Services/product-list.service';
 import { IShoppingCartItems } from 'src/app/ViewModels/ishopping-cart-items';
@@ -30,7 +31,7 @@ export class CartChildComponent implements OnInit, OnChanges {
   // productQuantityBase:number = 0;
 
   // productService:ProductListService;
-  constructor(private productService: ProductListService) {
+  constructor(private productService: ProductListService, private router:Router) {
     // this.productService = productService;
     // this.quantitySelected = new EventEmitter<number>();
     this.shoppingCartItems = new EventEmitter<IShoppingCartItems[]>();
@@ -58,5 +59,11 @@ export class CartChildComponent implements OnInit, OnChanges {
     // this.quantitySelected.emit(+inputQuantity);
 
     this.shoppingCartItems.emit(this.shoppingCartItem);
+  }
+
+  openProdect(productId:number)
+  {
+    //return Promise  Product/:PID/:PCount
+    this.router.navigate(['/Product', productId, this.productList.length]).then(()=>console.log("Hello"));
   }
 }

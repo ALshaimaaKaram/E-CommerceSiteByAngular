@@ -1,3 +1,13 @@
-<p>
-  ProductDetails works!
-</p>
+<div class="card m-3 mt-4" style="width: 20rem;">
+  <img class="card-img-top" height="300" [src]="sentProduct.Img" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{sentProduct.Name}}</h5>
+    <p class="card-text">Price: {{sentProduct.Price | currency}}</p>
+    <p class="card-text">Quantity: {{sentProduct.Quantity | currency}}</p>
+    <div>
+      <button [disabled]="sentProduct.ID == 1" class="btn btn-outline-primary d-inline-block me-3" (click)="previousProduct()">Previous</button>
+      <button [disabled]="sentProduct.ID == count" class="btn btn-outline-primary d-inline-block" (click)="nextProduct()">Next</button>
+    </div>
+    <button class="btn btn-outline-warning mt-2" (click)="goBack()">Go Back</button>
+  </div>
+</div>

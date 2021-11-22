@@ -19,7 +19,7 @@ export class ProductListService {
     this.productList = [
       {
         ID: 1,
-        Name: 'Samsong',
+        Name: 'Samsung',
         Price: 5000,
         Quantity: 4,
         Img: 'assets/Products/mobile1.jpeg',
@@ -27,7 +27,7 @@ export class ProductListService {
       },
       {
         ID: 2,
-        Name: 'Samsong',
+        Name: 'Samsung',
         Price: 6000,
         Quantity: 3,
         Img: 'assets/Products/labtopS.jpg',
