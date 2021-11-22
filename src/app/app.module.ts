@@ -13,6 +13,7 @@ import { IDNationalPipe } from './Pipes/IDNational.pipe';
 import { CreditCardPipe } from './Pipes/CreditCard/creditCard.pipe';
 import { CartParentComponent } from './Components/Cart/CartParent/CartParent.component';
 import { CartChildComponent } from './Components/Cart/CartChild/CartChild.component';
+import { ProductDetailsComponent } from './Components/ProductDetails/ProductDetails.component';
 import { HomeComponent } from './Components/home/home.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
@@ -33,7 +34,8 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
     HomeComponent,
     AboutUsComponent,
     ContactUsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProductDetailsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

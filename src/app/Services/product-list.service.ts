@@ -1,11 +1,20 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, OnChanges } from '@angular/core';
 import { IProduct } from '../models/iproduct';
+import { IShoppingCartItems } from '../ViewModels/ishopping-cart-items';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductListService {
   private productList: IProduct[] = [];
+  shoppingCartItem: IShoppingCartItems[] = [];
+  currentProduct: any;
+
+  //Quantity in table of parent
+  AvaliableQuantity: number = 0;
+
+  //Cart with Subcribe
+  //shoppingCartItems: EventEmitter<IShoppingCartItems[]> = new EventEmitter<IShoppingCartItems[]>();
   constructor() {
     this.productList = [
       {
@@ -60,22 +69,81 @@ export class ProductListService {
     return this.productList;
   }
 
-  getProductById(ProductId: number): IProduct | undefined {
-    return this.productList.find((p) => p.ID == ProductId);
+  getProductById(ProductId: number): IProduct {
+    let foundPrd = this.productList.find((p) => p.ID == ProductId);
+    return foundPrd ? foundPrd : ({} as IProduct);
   }
 
-  productCount:any;
-  increaseQuantity(ProductID:number, inputQuantity:string)
-  {
-    this.productCount = [...this.productList].find((i) => i.ID == ProductID);
-    // if(inputQuantity >= this.productCount.Quantity)
-      this.productCount.Quantity += +inputQuantity;
+  increaseQuantity(ProductID: number, inputQuantity: string): IShoppingCartItems[] {
+    this.currentProduct = [...this.productList].find((i) => i.ID == ProductID);
+
+    this.AvaliableQuantity = this.currentProduct.Quantity;
+    //Handle increse quantity for table in child
+    if (+inputQuantity <= this.AvaliableQuantity) {
+      this.currentProduct.Quantity += +inputQuantity;
+      //Handle change quantity in table in parent
+      let item = this.shoppingCartItem.find((i) => i.ProductID == ProductID);
+      if (item) {
+        item.SelectedQuantity += +inputQuantity;
+        let index = this.shoppingCartItem.indexOf(item);
+        this.shoppingCartItem[index] = item;
+      } else {
+        this.shoppingCartItem.push({
+          ProductID: this.currentProduct.ID,
+          ProductName: this.currentProduct.Name,
+          SelectedQuantity: +inputQuantity,
+          Unit_price: this.currentProduct.Price,
+        });
+      }
+    }
+
+    return this.shoppingCartItem;
+    //cart with Subscribe
+    // this.shoppingCartItems.emit(this.shoppingCartItem);
   }
-  decreaseQuantity(ProductID:number, inputQuantity:string)
-  {
-    this.productCount = [...this.productList].find((i) => i.ID == ProductID);
-    if(this.productCount.Quantity > 0)
-      this.productCount.Quantity -= +inputQuantity;
-      // this.shoppingCartItemsSelect.emit(shoppingCartItemsSelect)
+
+  decreaseQuantity(ProductID: number, inputQuantity: string): IShoppingCartItems[] {
+    this.currentProduct = [...this.productList].find((i) => i.ID == ProductID);
+
+    this.AvaliableQuantity = this.currentProduct.Quantity;
+
+    //Handle increse quantity for table in child
+    if (+inputQuantity <= this.AvaliableQuantity) {
+      //Handle change quantity in table in parent
+      let item = this.shoppingCartItem.find((i) => i.ProductID == ProductID);
+      if (item) {
+        if(item.SelectedQuantity >= +inputQuantity)
+        {
+          this.currentProduct.Quantity -= +inputQuantity;
+          item.SelectedQuantity -= +inputQuantity;
+          let index = this.shoppingCartItem.indexOf(item);
+          this.shoppingCartItem[index] = item;
+        }
+      }
+      // else {
+      //   this.shoppingCartItem.push({
+      //     ProductID: this.currentProduct.ID,
+      //     ProductName: this.currentProduct.Name,
+      //     SelectedQuantity: +inputQuantity,
+      //     Unit_price: this.currentProduct.Price,
+      //   });
+      // }
+    }
+
+
+    // this.AvaliableQuantity = this.productCount.Quantity;
+    // if (+inputQuantity <= this.AvaliableQuantity)
+    //   this.productCount.Quantity -= +inputQuantity;
+
+    // this.shoppingCartItem.push({
+    //   ProductID: this.productCount.ID,
+    //   ProductName: this.productCount.Name,
+    //   SelectedQuantity: +inputQuantity,
+    //   Unit_price: this.productCount.Price,
+    // });
+
+    return this.shoppingCartItem;
+    //cart with subscribe
+    // this.shoppingCartItemsSelect.emit(shoppingCartItemsSelect)
   }
 }

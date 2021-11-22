@@ -7,27 +7,27 @@
       <th scope="col-2">Quantity</th>
       <th scope="col-2">Image</th>
       <th scope="col-2">QuantityInput</th>
-      <th scope="col-2">Buy</th>
+      <th scope="col-2">Add To Cart</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of productsSelectedByCat; let i = index"
-      [ngStyle]="{'background-color':(item.Quantity == 1)? 'yellow': ''}">
-      <div *ngIf="item.Quantity == 0 then empty else product"></div>
+      [ngStyle]="{'background-color':(item.Quantity == 0)? 'yellow': ''}">
+      <!-- <div *ngIf="item.Quantity == 0 then empty else product"></div>
       <ng-template #empty></ng-template>
-      <ng-template #product>
+      <ng-template #product> -->
         <th>{{i+1}}</th>
         <td>{{item?.Name}}</td>
-        <td>{{item?.Price}}</td>
+        <td>{{item?.Price | currency : 'USD' : 'symbol'}}</td>
         <td>{{item?.Quantity}}</td>
-        <td><img [src]="item?.Img" width="120" height="100" appProductCard></td>
+        <td><img [src]="item?.Img" width="120" height="100" appProductCard = "yellow"></td>
         <td>
           <button class="btn btn-success m-1 mt-0" (click)="increaseQuantity(item.ID, inputQuantity.value)">+</button>
           <input min="0" max="" type="number" class="form-control d-inline-block mt-4 w-50" #inputQuantity>
           <button class="btn btn-danger m-1 mt-0" (click)="decreaseQuantity(item.ID, inputQuantity.value)">-</button>
         </td>
-        <td><button class="btn btn-primary mt-4">Buy</button></td>
-      </ng-template>
+        <td><button class="btn btn-secondary mt-4">Add To Cart</button></td>
+      <!-- </ng-template> -->
     </tr>
   </tbody>
 </table>

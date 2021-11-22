@@ -5,6 +5,8 @@ import { CartParentComponent } from './Components/Cart/CartParent/CartParent.com
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { HomeComponent } from './Components/home/home.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { ProductDetailsComponent } from './Components/ProductDetails/ProductDetails.component';
+import { ProducttComponent } from './Components/Productt/Productt.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'/Home' , pathMatch: 'full' },
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'Aboutus', component: AboutUsComponent },
   { path: 'Contactus', component: ContactUsComponent },
   { path: 'Products', component: CartParentComponent },
+  { path: 'ProductsByCard', component: ProducttComponent },
+  { path: 'Products/:PID', component: ProductDetailsComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
