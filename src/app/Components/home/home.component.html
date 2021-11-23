@@ -1,1 +1,41 @@
-<p>home works!</p>
+<div class="col-4 mt-3">
+  <h3>Categories</h3>
+  <select class="form-select dropdown"  [(ngModel)]="categoryId">
+    <option #cat *ngFor="let catg of categoryList" [value]="catg.Id">{{catg.Name}}</option>
+  </select>
+</div>
+<hr>
+
+<table class="table table-hover table-dark text-white mt-3">
+  <thead>
+    <tr>
+      <th scope="col-2">#</th>
+      <th scope="col-2">Name</th>
+      <th scope="col-2">Price</th>
+      <th scope="col-2">Quantity</th>
+      <th scope="col-2">Image</th>
+      <th scope="col-2">Details</th>
+      <th scope="col-2">Detailsbtn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of productList; let i = index"
+      [ngStyle]="{'background-color':(item.Quantity == 0)? 'yellow': ''}">
+      <!-- <div *ngIf="item.Quantity == 0 then empty else product"></div>
+      <ng-template #empty></ng-template>
+      <ng-template #product> -->
+        <th>{{i+1}}</th>
+        <td>{{item?.Name}}</td>
+        <td>{{item?.Price | currency : 'USD' : 'symbol'}}</td>
+        <td>{{item?.Quantity}}</td>
+        <td><img [src]="item.ImgURL" width="120" height="100" appProductCard = "yellow"></td>
+        <td>
+          <a class="btn btn-info text-white mt-4" [routerLink]="['/Product',item.id]">Details</a>
+        </td>
+        <td>
+          <button class="btn btn-info text-white mt-4" (click)="openProdect(item.id!)">Details</button>
+        </td>
+            <!-- </ng-template> -->
+    </tr>
+  </tbody>
+</table>

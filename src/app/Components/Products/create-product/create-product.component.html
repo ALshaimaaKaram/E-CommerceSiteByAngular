@@ -1,0 +1,15 @@
+<form [formGroup]="createForm">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name Product</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+  </div>
+  <div class="mb-3">
+    <label for="Price" class="form-label">Price</label>
+    <input type="number" min="0" class="form-control" id="Price" formControlName="price">
+  </div>
+  <div class="mb-3">
+    <label for="Quantity" class="form-label">Quantity</label>
+    <input type="number" min="0" class="form-control" id="Quantity" formControlName="quantity">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="createProduct()">Create</button>
+</form>
