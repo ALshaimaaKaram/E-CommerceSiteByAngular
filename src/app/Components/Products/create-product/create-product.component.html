@@ -1,15 +1,23 @@
-<form [formGroup]="createForm">
+<form [formGroup]="createForm" class="card my-4 p-3">
   <div class="mb-3">
     <label for="name" class="form-label">Name Product</label>
-    <input type="text" class="form-control" id="name" formControlName="name">
+    <input type="text" [class.is-invalid]="createForm.controls['name'].invalid" [class.is-valid]="createForm.controls['name'].valid" class="form-control" id="name" formControlName="name">
   </div>
   <div class="mb-3">
     <label for="Price" class="form-label">Price</label>
-    <input type="number" min="0" class="form-control" id="Price" formControlName="price">
+    <input type="number" [class.is-invalid]="createForm.controls['price'].invalid" [class.is-valid]="createForm.controls['price'].valid" min="0" class="form-control" id="Price" formControlName="price">
   </div>
   <div class="mb-3">
     <label for="Quantity" class="form-label">Quantity</label>
-    <input type="number" min="0" class="form-control" id="Quantity" formControlName="quantity">
+    <input type="number" [class.is-invalid]="createForm.controls['quantity'].invalid" [class.is-valid]="createForm.controls['quantity'].valid" min="0" class="form-control" id="Quantity" formControlName="quantity">
+  </div>
+  <div class="mb-3">
+    <h3>Categories</h3>
+    <select class="form-select dropdown" formControlName="CategoryID" >
+      <ng-container *ngFor="let catg of categoryList">
+      <option #cat (click)="gwtCat(catg.id)"  [value]="catg.id">{{catg.Name}}</option>
+    </ng-container>
+    </select>
   </div>
   <button type="submit" class="btn btn-primary" (click)="createProduct()">Create</button>
 </form>

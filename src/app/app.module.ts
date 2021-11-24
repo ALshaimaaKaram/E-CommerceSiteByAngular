@@ -21,6 +21,7 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateProductComponent } from './Components/Products/create-product/create-product.component';
 import { DetailsProductApiComponent } from './Components/Products/details-product-api/details-product-api.component';
+import { PRoductListComponent } from './Components/Products/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { DetailsProductApiComponent } from './Components/Products/details-produc
     ProductDetailsComponent,
     CreateProductComponent,
     DetailsProductApiComponent,
+    PRoductListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [],

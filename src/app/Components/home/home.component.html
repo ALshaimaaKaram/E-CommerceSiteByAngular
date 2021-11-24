@@ -1,41 +1,40 @@
 <div class="col-4 mt-3">
   <h3>Categories</h3>
-  <select class="form-select dropdown"  [(ngModel)]="categoryId">
-    <option #cat *ngFor="let catg of categoryList" [value]="catg.Id">{{catg.Name}}</option>
+  <select class="form-select dropdown"  [(ngModel)]="SelectedCategory">
+    <option #cat *ngFor="let catg of categoryList" [value]="catg.id">{{catg.Name}}</option>
   </select>
 </div>
 <hr>
 
-<table class="table table-hover table-dark text-white mt-3">
+
+<h3 class="mt-2 text-info text-center">All The Product</h3>
+<app-product-list [categoryId] = "SelectedCategory" (shoppingCartItems)="addInCart($event)"></app-product-list>
+<hr>
+
+<h3 class="mt-2 text-success text-center">The Product in Cart</h3>
+<table class="table text-white mt-3">
   <thead>
-    <tr>
+    <tr class="bg-dark">
       <th scope="col-2">#</th>
       <th scope="col-2">Name</th>
       <th scope="col-2">Price</th>
       <th scope="col-2">Quantity</th>
-      <th scope="col-2">Image</th>
-      <th scope="col-2">Details</th>
-      <th scope="col-2">Detailsbtn</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let item of productList; let i = index"
-      [ngStyle]="{'background-color':(item.Quantity == 0)? 'yellow': ''}">
-      <!-- <div *ngIf="item.Quantity == 0 then empty else product"></div>
-      <ng-template #empty></ng-template>
-      <ng-template #product> -->
-        <th>{{i+1}}</th>
-        <td>{{item?.Name}}</td>
-        <td>{{item?.Price | currency : 'USD' : 'symbol'}}</td>
-        <td>{{item?.Quantity}}</td>
-        <td><img [src]="item.ImgURL" width="120" height="100" appProductCard = "yellow"></td>
-        <td>
-          <a class="btn btn-info text-white mt-4" [routerLink]="['/Product',item.id]">Details</a>
-        </td>
-        <td>
-          <button class="btn btn-info text-white mt-4" (click)="openProdect(item.id!)">Details</button>
-        </td>
-            <!-- </ng-template> -->
+  <tbody #Cart>
+    <tr *ngFor="let product of shoppingCartItem; let i = index"
+       [ngStyle]="{'background-color':(product.SelectedQuantity == 0)? 'yellow': 'black'}">
+      <td>{{i+1}}</td>
+      <td>{{product.ProductName}}</td>
+      <td>{{product.Unit_price | currency : 'USD' : 'symbol'}}</td>
+      <td>{{product.SelectedQuantity}}</td>
     </tr>
   </tbody>
 </table>
+
+<!-- <hr>
+<h4 class="text-secondary">Total Price: {{totalPrice | currency : 'USD' : 'symbol'}}</h4>
+<h3 class="text-success">Total Price With Tax 14%: {{totalPriceWithTax | currency : 'USD' : 'symbol'}}</h3>
+<hr>
+<button class="btn btn-dark" (click)="getProduct()">Confirm</button>
+<hr> -->

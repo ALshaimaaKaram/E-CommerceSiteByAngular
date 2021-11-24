@@ -1,5 +1,5 @@
 export interface IcategoryVM {
-  Id:number,
+  id:number,
   Name:string,
   Description:string
 }

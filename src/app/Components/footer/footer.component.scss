@@ -1,9 +1,20 @@
 footer
-{
-  height: 100px;
-}
+{}
 
 p{
-  text-align: center;
+  text-align: left;
   padding-top: 40px;
+}
+
+p,ul{
+  padding-left: 50px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+ul{
+list-style-type: none;
 }
