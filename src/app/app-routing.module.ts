@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'Aboutus', component: AboutUsComponent },
   { path: 'Contactus', component: ContactUsComponent },
   { path: 'Products', component: CartParentComponent , canActivate:[UserAuthGuard]},
-  { path: 'CreatProduct', component: CreateProductComponent , canActivate:[UserAuthGuard]},
+  { path: 'admin/insertproduct', component: CreateProductComponent , canActivate:[UserAuthGuard]},
   { path: 'ProductsByCard', component: ProducttComponent , canActivate:[UserAuthGuard]},
   { path: 'Product/:PID', component: ProductDetailsComponent},
   { path: 'Product/:PID/:PCount', component: ProductDetailsComponent},

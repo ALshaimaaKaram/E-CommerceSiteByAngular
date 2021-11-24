@@ -1,23 +1,26 @@
-<form [formGroup]="createForm" class="card my-4 p-3">
+<form [formGroup]="createForm" (ngSubmit)="addProduct()" class="card my-4 p-3">
   <div class="mb-3">
     <label for="name" class="form-label">Name Product</label>
-    <input type="text" [class.is-invalid]="createForm.controls['name'].invalid" [class.is-valid]="createForm.controls['name'].valid" class="form-control" id="name" formControlName="name">
+    <input type="text" [class.is-invalid]="createForm.controls['name'].invalid && createForm.controls['name'].touched" [class.is-valid]="createForm.controls['name'].valid" class="form-control" id="name" formControlName="name">
+    <small [hidden]="createForm.controls['name'].valid || createForm.controls['name'].untouched" class="text-danger">Name Is Required</small>
   </div>
   <div class="mb-3">
     <label for="Price" class="form-label">Price</label>
-    <input type="number" [class.is-invalid]="createForm.controls['price'].invalid" [class.is-valid]="createForm.controls['price'].valid" min="0" class="form-control" id="Price" formControlName="price">
+    <input type="number" [class.is-invalid]="createForm.controls['price'].invalid && createForm.controls['price'].touched" [class.is-valid]="createForm.controls['price'].valid" min="0" class="form-control" id="Price" formControlName="price">
+    <small [hidden]="createForm.controls['price'].valid || createForm.controls['price'].untouched" class="text-danger">Price Is Required</small>
   </div>
   <div class="mb-3">
     <label for="Quantity" class="form-label">Quantity</label>
-    <input type="number" [class.is-invalid]="createForm.controls['quantity'].invalid" [class.is-valid]="createForm.controls['quantity'].valid" min="0" class="form-control" id="Quantity" formControlName="quantity">
+    <input type="number" [class.is-invalid]="createForm.controls['quantity'].invalid && createForm.controls['quantity'].touched" [class.is-valid]="createForm.controls['quantity'].valid" min="0" class="form-control" id="Quantity" formControlName="quantity">
+    <small [hidden]="createForm.controls['quantity'].valid || createForm.controls['quantity'].untouched" class="text-danger">Quantity Is Required</small>
   </div>
   <div class="mb-3">
     <h3>Categories</h3>
-    <select class="form-select dropdown" formControlName="CategoryID" >
-      <ng-container *ngFor="let catg of categoryList">
-      <option #cat (click)="gwtCat(catg.id)"  [value]="catg.id">{{catg.Name}}</option>
+    <select class="form-select dropdown" [class.is-invalid]="createForm.controls['CategoryID'].invalid && createForm.controls['CategoryID'].touched" [class.is-valid]="createForm.controls['CategoryID'].valid" formControlName="CategoryID" >
+      <ng-container *ngFor="let catg of categoryList" [(ngModel)="SelectedCategory">
+      <option  [value]="catg.id">{{catg.Name}}</option>
     </ng-container>
     </select>
   </div>
-  <button type="submit" class="btn btn-primary" (click)="createProduct()">Create</button>
+  <button type="submit" [disabled]="createForm.invalid" class="btn btn-primary">Create</button>
 </form>

@@ -33,7 +33,7 @@ export class CreateProductComponent implements OnInit {
         name:['',[Validators.required]],
         quantity:['',[Validators.required]],
         price:['',[Validators.required]],
-        CategoryID: ['']
+        CategoryID: ['',[Validators.required]]
       }
     )
     this.createForm.controls['CategoryID'].valueChanges.subscribe(CategoryID =>
@@ -41,7 +41,7 @@ export class CreateProductComponent implements OnInit {
     );
   }
 
-  createProduct()
+  addProduct()
   {
     this.newProduct={
       Name: this.createForm.value['name'],
