@@ -22,6 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateProductComponent } from './Components/Products/create-product/create-product.component';
 import { DetailsProductApiComponent } from './Components/Products/details-product-api/details-product-api.component';
 import { PRoductListComponent } from './Components/Products/product-list/product-list.component';
+import { PagenationComponent } from './Components/pagenation/pagenation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { MatTableModule } from '@angular/material/table';
+// import { MatPaginatorModule } from '@angular/material';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 @NgModule({
   declarations: [
@@ -43,8 +49,15 @@ import { PRoductListComponent } from './Components/Products/product-list/product
     CreateProductComponent,
     DetailsProductApiComponent,
     PRoductListComponent,
+    PagenationComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatSliderModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

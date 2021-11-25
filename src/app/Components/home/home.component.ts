@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   // @ViewChild('categorySel') categorySel!:ElementRef;
   sb:any;
   constructor(private categoryService: CategoryService, private productService: ProductService,private router:Router) {
-    this.categoryService.getAllCateogories().subscribe({
+   this.sb = this.categoryService.getAllCateogories().subscribe({
       next: (categories) => {
         this.categoryList = categories;
       }, error: (err) => alert("Error")
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
 
   ngOnDestroy(): void {
     //this.subsription.unsubscribe();
-      // this.sb.unsubscribe();
+      this.sb.unsubscribe();
   }
   addInCart(shoppingCartItem:IShoppingCartItems[])
   {

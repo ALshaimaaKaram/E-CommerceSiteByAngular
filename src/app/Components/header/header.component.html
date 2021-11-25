@@ -7,10 +7,10 @@
     <a class="nav-link text-warning" routerLink="/Products" routerLinkActive="active">Products</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-warning" routerLink="/admin/insertproduct" routerLinkActive="active">Admin</a>
+    <a class="nav-link text-warning" routerLink="/admin/insertproduct" routerLinkActive="active" [class.isDisabled]="!IsLogged">Admin</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-warning" routerLink="/ProductsByCard" routerLinkActive="active">ProductsByCard</a>
+    <a class="nav-link text-warning" routerLink="/ProductsByCard" routerLinkActive="active" [class.isDisabled]="!IsLogged">ProductsByCard</a>
   </li>
   <li class="nav-item">
     <a class="nav-link text-warning" routerLink="/Aboutus" routerLinkActive="active">Aboutus</a>
@@ -19,16 +19,16 @@
     <a class="nav-link text-warning" routerLink="/Contactus" routerLinkActive="active">Contactus</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-warning" routerLink="/User/MyProfile" routerLinkActive="active">MyProfile</a>
+    <a class="nav-link text-warning" routerLink="/User/MyProfile" routerLinkActive="active" [class.isDisabled]="!IsLogged">MyProfile</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-warning" routerLink="/User/EditProfile" routerLinkActive="active">Edit Profile</a>
+    <a class="nav-link text-warning" routerLink="/User/EditProfile" routerLinkActive="active" [class.isDisabled]="!IsLogged">Edit Profile</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-warning" routerLink="/User/Login" routerLinkActive="active">Login</a>
+    <a class="nav-link text-warning" routerLink="/User/Login" routerLinkActive="active" [hidden]="IsLogged">Login</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-warning" routerLink="/User/Login" routerLinkActive="active">Logout</a>
+    <a class="nav-link text-warning" routerLink="/User/Login" routerLinkActive="active" [hidden]="!IsLogged">Logout</a>
   </li>
 </ul>
 <!-- Tab panes -->
